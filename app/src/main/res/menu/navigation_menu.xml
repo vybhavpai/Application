@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/myprof"
+        android:title="My Profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        ></item>
+
+    <item
+        android:id="@+id/idea"
+        android:title="My Idea"
+        android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+        ></item>
+
+    <item
+        android:id="@+id/relat"
+        android:title="Relations"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        ></item>
+
+    <item
+        android:id="@+id/notif"
+        android:title="Notification"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        ></item>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Log Out"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        ></item>
+
+
+</menu>
