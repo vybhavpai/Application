@@ -87,7 +87,7 @@ public class RequestPage extends AppCompatActivity {
 
     public void visitprofile(View view) {
 
-        Intent a = new Intent(this,profile_student.class);
+        Intent a = new Intent(this,profile_student_1.class);
         a.putExtra("id",id);
         startActivity(a);
 
