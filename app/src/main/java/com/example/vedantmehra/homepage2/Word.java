@@ -17,6 +17,7 @@ public class Word {
     private static final int NO_IMAGE_PROVIDED = -1;
 
     private int response;
+    public int amount;
     //private String name;
 
     /**
@@ -33,7 +34,13 @@ public class Word {
         RequestStatus = reqstat;
         response = 0;
     }
-
+    public Word(int amt,String head, String subhead, int reqstat) {
+        Header = head;
+        SubHeader = subhead;
+        RequestStatus = reqstat;
+        response = 0;
+        amount = amt;
+    }
     /**
      * Create a new Word object.
      *
