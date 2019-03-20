@@ -49,6 +49,7 @@ public class HomePage extends AppCompatActivity {
     ArrayList<TagClass> tagObjList = new ArrayList<>();
     ArrayList<Event> eventList = new ArrayList<>();
     ArrayList<Integer> flag = new ArrayList<>();
+    ArrayList<String> keyList = new ArrayList<>();
     ListView myListView;
 
     @Override
@@ -226,6 +227,7 @@ public class HomePage extends AppCompatActivity {
         tagObjList.clear();
         flag.clear();
         eventList.clear();
+        keyList.clear();
         final String data = mInputText.getText().toString();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -247,7 +249,7 @@ public class HomePage extends AppCompatActivity {
                     {
                         Toast.makeText(getApplicationContext(),val+" "+data,Toast.LENGTH_LONG).show();
                         // Toast.makeText(getApplicationContext(),data,Toast.LENGTH_LONG).show();
-
+                        keyList.add(snapshot.getKey());
                         myArrayList.add(val);
                         Log.d(TAG,val);
                         String s = obj1.tagString;
@@ -330,23 +332,33 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent intent = new Intent(HomePage.this,Profile.class);
+
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
+                        Intent intent = new Intent(HomePage.this,profile_student_1.class);
                         ToProfile profileTagObj = new ToProfile();
                         profileTagObj.profileObj = profileObjList.get(position);
                         profileTagObj.tagObj = tagObjList.get(position);
                         //Add your data from getFactualResults method to bundle
-                        bundle.putSerializable("NAME", profileTagObj);
+                        //bundle.putSerializable("NAME", profileTagObj);
+                        intent.putExtra("id",keyList.get(position));
+                        startActivity(intent);
 //Add the bundle to the intent
                     }
                     else{
+                        int pos = position-profileObjList.size();
+                        Intent intent = new Intent(HomePage.this,EventPage.class);
                         ToEvent EventObj = new ToEvent();
-                        EventObj.eventObj=eventList.get(position);
-                        bundle.putSerializable("EVENT_NAME",EventObj);
+                        EventObj.eventObj=eventList.get(pos);
+                        bundle.putString("EVENT_NAME",eventList.get(pos).eventName);
+                        bundle.putString("DESCRIPTION",eventList.get(pos).description);
+                        bundle.putString("VENUE",eventList.get(pos).location);
+                        bundle.putString("DATE",eventList.get(pos).date);
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+
                 }
             });
             return convertView;
