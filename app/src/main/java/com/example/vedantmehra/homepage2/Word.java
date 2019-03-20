@@ -18,6 +18,8 @@ public class Word {
 
     private int response;
     public int amount;
+
+    public String date,description;
     //private String name;
 
     /**
@@ -34,9 +36,12 @@ public class Word {
         RequestStatus = reqstat;
         response = 0;
     }
-    public Word(int amt,String head, String subhead, int reqstat) {
+
+    public Word(int amt,String head, String subhead, int imageResourceId,
+                  int reqstat) {
         Header = head;
         SubHeader = subhead;
+        mImageResourceId = imageResourceId;
         RequestStatus = reqstat;
         response = 0;
         amount = amt;
@@ -57,6 +62,16 @@ public class Word {
         mImageResourceId = imageResourceId;
         RequestStatus = reqstat;
         response = 0;
+    }
+    public Word(String dat,String desc,String head, String subhead, int imageResourceId,
+                int reqstat) {
+        Header = head;
+        SubHeader = subhead;
+        mImageResourceId = imageResourceId;
+        RequestStatus = reqstat;
+        response = 0;
+        date = dat;
+        description = desc;
     }
 
     /**
@@ -100,5 +115,9 @@ public class Word {
 
     public int getResponse() {
         return response;
+    }
+
+    public void setRequestStatus(int requestStatus) {
+        RequestStatus = requestStatus;
     }
 }

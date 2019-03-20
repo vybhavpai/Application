@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -28,7 +29,7 @@ import java.util.Map;
  */
 public class RequestFragment extends Fragment {
 
-    DatabaseReference databaseReference, databaseReferenceNotification, databaseReferenceMentor, databaseReferenceInvestor;
+    DatabaseReference databaseReference, databaseReferenceNotification, databaseReferenceMentor, databaseReferenceInvestor,change;
     Word temp;
     //public int stat,pos;
     //learn set arguements and et argurments for the passing of status and pos and pass array instead
@@ -54,15 +55,35 @@ public class RequestFragment extends Fragment {
                 int status = Integer.parseInt(data.get("status").toString());
                 Log.d("check","name :" + name);
                 Log.d("check","status :" + status);
-
-                words.add(new Word("Friend Request", name, R.drawable.friendreq,
-                        status));
+                if(status<=3) {
+                    words.add(new Word("Friend Request", name, R.drawable.friendreq,
+                            status));
+                }
+                else
+                {
+                    int amount =  Integer.parseInt(data.get("amount").toString());
+                            words.add(new Word(amount,"Money request",name,R.drawable.cash,status));
+                }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Map<String,Object> data = (Map<String, Object>) dataSnapshot.getValue();
+                int status = Integer.parseInt(data.get("status").toString());
+                String name = (String) data.get("name");
 
+                Iterator<Word> a = words.iterator();
+                while(a.hasNext())
+                {
+                    Word next = a.next();
+                    if(next.getSubHeader().equals(name))
+                    {
+                        next.setRequestStatus(status);
+                        break;
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -96,6 +117,15 @@ public class RequestFragment extends Fragment {
                 if (temp.getRequestStatus() == 0) {
                     Intent intent = new Intent(getActivity(), RequestPage.class);
                     intent.putExtra("position", position);
+                    startActivity(intent);
+                }
+
+                if(temp.getRequestStatus() == 4)
+                {
+                    Intent intent = new Intent(getActivity(), RequestPage.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("money", 1);
+
                     startActivity(intent);
                 }
             }

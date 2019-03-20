@@ -49,8 +49,11 @@ public class EventFragment extends Fragment {
                 Map<String,Object> data = (Map<String, Object>) dataSnapshot.getValue();
                 String name = (String) data.get("eventName");
                 String location = (String) data.get("location");
+                String description = (String) data.get("description");
+                String date = (String) data.get("date");
 
-                words.add(new Word(name, "going to be held at " + location, R.drawable.event, 0));
+
+                words.add(new Word(date,description,name, "going to be held at " + location, R.drawable.event, 0));
 
                 adapter.notifyDataSetChanged();
             }
@@ -90,7 +93,15 @@ public class EventFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                    Intent intent = new Intent(getActivity(), EventPage.class);
-                    intent.putExtra("position", position);
+                   Bundle event = new Bundle();
+                    Event sending = new Event();
+                    Word object = words.get(position);
+                    sending.date = object.date;
+                    sending.description = object.description;
+                    sending.eventName = object.getHeader();
+                    sending.location = object.getSubHeader();
+                    event.putSerializable("EVENT_NAME",sending);
+                    intent.putExtras(event);
                     startActivity(intent);
 
             }

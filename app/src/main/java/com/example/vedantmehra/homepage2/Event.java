@@ -1,7 +1,9 @@
 package com.example.vedantmehra.homepage2;
 
-public class Event{
-    String eventName,date;
+import java.io.Serializable;
+
+public class Event implements Serializable {
+    String eventName,date,description,location;
     Event()
     {
 
