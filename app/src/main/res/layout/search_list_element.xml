@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     android:padding="10dp"
     android:id="@+id/search_list"
+    android:background="#fff"
     >
     <ImageView
         android:id="@+id/profileImage"

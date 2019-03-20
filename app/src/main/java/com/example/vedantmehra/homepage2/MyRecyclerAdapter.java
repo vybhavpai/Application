@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>   {
 
-    Glide GlideApp;
+    //Glide GlideApp;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     Context context;
     ArrayList<String[]> arrayList;
@@ -76,7 +76,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         profile_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, profile_student.class);
+                Intent intent = new Intent(context, profile_student_1.class);
                 intent.putExtra("id", Studentid);
                 context.startActivity(intent);
             }
@@ -86,7 +86,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         profile_visit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, profile_student.class);
+                Intent intent = new Intent(context, profile_student_1.class);
                 intent.putExtra("id", Studentid);
                 context.startActivity(intent);
             }

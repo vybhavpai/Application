@@ -45,8 +45,8 @@ public class HomePage extends AppCompatActivity {
     private DatabaseReference mRef,mEventRef;
     ArrayList<String> myArrayList = new ArrayList<>();
     ArrayList<String> secondArrayList = new ArrayList<>();
-    ArrayList<Profile> profileObjList = new ArrayList<>();
-    ArrayList<TagClass> tagObjList = new ArrayList<>();
+//    ArrayList<Profile> profileObjList = new ArrayList<>();
+//    ArrayList<TagClass> tagObjList = new ArrayList<>();
     ArrayList<Event> eventList = new ArrayList<>();
     ArrayList<Integer> flag = new ArrayList<>();
     ArrayList<String> keyList = new ArrayList<>();
@@ -223,8 +223,8 @@ public class HomePage extends AppCompatActivity {
         myListView.setAdapter(adapter);
         myArrayList.clear();
         secondArrayList.clear();
-        profileObjList.clear();
-        tagObjList.clear();
+//        profileObjList.clear();
+//        tagObjList.clear();
         flag.clear();
         eventList.clear();
         keyList.clear();
@@ -259,8 +259,8 @@ public class HomePage extends AppCompatActivity {
                             secondArrayList.add("Investor");
                         else
                             secondArrayList.add("Mentor");
-                        profileObjList.add(obj);
-                        tagObjList.add(obj1);
+//                        profileObjList.add(obj);
+//                        tagObjList.add(obj1);
                         flag.add(0);
                     }
                 }
@@ -335,10 +335,10 @@ public class HomePage extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
-                        Intent intent = new Intent(HomePage.this,profile_student_1.class);
+                        Intent intent = new Intent(HomePage.this,profile_student_2.class);
                         ToProfile profileTagObj = new ToProfile();
-                        profileTagObj.profileObj = profileObjList.get(position);
-                        profileTagObj.tagObj = tagObjList.get(position);
+//                        profileTagObj.profileObj = profileObjList.get(position);
+//                        profileTagObj.tagObj = tagObjList.get(position);
                         //Add your data from getFactualResults method to bundle
                         //bundle.putSerializable("NAME", profileTagObj);
                         intent.putExtra("id",keyList.get(position));
@@ -346,7 +346,7 @@ public class HomePage extends AppCompatActivity {
 //Add the bundle to the intent
                     }
                     else{
-                        int pos = position-profileObjList.size();
+                        int pos = position-keyList.size();
                         Intent intent = new Intent(HomePage.this,EventPage.class);
                         ToEvent EventObj = new ToEvent();
                         EventObj.eventObj=eventList.get(pos);

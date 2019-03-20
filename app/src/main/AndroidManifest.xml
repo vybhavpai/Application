@@ -16,6 +16,7 @@
         <activity android:name=".notification" />
         <activity android:name=".Request" />
         <activity android:name=".profile_student_1" />
+        <activity android:name=".profile_student_2" />
         <activity android:name=".profile_student" />
         <activity android:name=".profile_student_edit" />
         <activity android:name=".idea" />

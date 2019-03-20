@@ -52,7 +52,6 @@ public class profile_student extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 tag = dataSnapshot.child("tag").child("tag").getValue(String.class);
                 profile = dataSnapshot.child("profile").getValue(UserProfile.class);
-               // Toast.makeText(profile_student.this, "lavdesh", Toast.LENGTH_SHORT).show();
 
                 if (tag.equals("0")) {
                     textView3.setText(profile.name);
