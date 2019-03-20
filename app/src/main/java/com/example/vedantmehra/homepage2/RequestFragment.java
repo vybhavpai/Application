@@ -60,7 +60,18 @@ public class RequestFragment extends Fragment {
                             status));
                 }
                 else
-                {
+                    if(status == 7)
+                    {
+                        words.add(new Word("Friend Requst has been accepted", name, R.drawable.accept,
+                                status));
+                    }
+                    else
+                        if(status == 8)
+                        {
+                            words.add(new Word("Money Requst has been accepted", name, R.drawable.accept,
+                                    status));
+                        }
+                        else {
                     int amount =  Integer.parseInt(data.get("amount").toString());
                             words.add(new Word(amount,"Money request",name,R.drawable.cash,status));
                 }

@@ -186,7 +186,7 @@ public class HomePage extends AppCompatActivity {
 
                 }else if(id == R.id.notif){
                     Toast.makeText(HomePage.this, "Notification Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(HomePage.this, notification.class);
+                    Intent intent = new Intent(HomePage.this, NotificationMain.class);
                     startActivity(intent);
 
                 }

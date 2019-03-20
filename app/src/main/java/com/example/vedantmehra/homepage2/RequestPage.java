@@ -3,6 +3,7 @@ package com.example.vedantmehra.homepage2;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,12 +89,78 @@ public class RequestPage extends AppCompatActivity {
             sender = firebaseDatabase.getReference("user/" + id);
             reference = sender.child("relation");
             reference.child(FirebaseAuth.getInstance().getUid()).setValue(FirebaseAuth.getInstance().getUid());
+//            reference = sender.child("notification");
+//            reference.child(id + "acceptf").child("id").setValue(FirebaseAuth.getInstance().getUid());
+//            reference.child(id + "acceptf").child("status").setValue(7);
+//            sender.child("profile").addChildEventListener(new ChildEventListener() {
+//                @Override
+//                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                    if(dataSnapshot.getKey().equals("name"))
+//                        name = dataSnapshot.getValue(String.class);
+//
+//                }
+//
+//                @Override
+//                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                }
+//
+//                @Override
+//                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//                }
+//
+//                @Override
+//                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//            reference.child(id + "acceptf").child("name").setValue(name);
+
             reference = x.child("relation");
             reference.child(id).setValue(id);
         }
         else
         if(type == 4) {
             y.setValue("5");
+//            reference = sender.child("notification");
+//            reference.child(id + "acceptm").child("id").setValue(FirebaseAuth.getInstance().getUid());
+//            reference.child(id + "acceptm").child("status").setValue(8);
+//            sender.child("profile").addChildEventListener(new ChildEventListener() {
+//                @Override
+//                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                    if(dataSnapshot.getKey().equals("name"))
+//                        name = dataSnapshot.getValue(String.class);
+//
+//                }
+//
+//                @Override
+//                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                }
+//
+//                @Override
+//                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//                }
+//
+//                @Override
+//                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//            reference.child(id + "acceptm").child("name").setValue(name);
+//
         }
         startActivity(intent);
     }

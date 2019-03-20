@@ -62,7 +62,7 @@ public class HomePageStudent extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_edit:
-                        intent = new Intent(HomePageStudent.this, notification.class);
+                        intent = new Intent(HomePageStudent.this, NotificationMain.class);
                         Toast.makeText(HomePageStudent.this, "Notification", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
@@ -124,7 +124,7 @@ public class HomePageStudent extends AppCompatActivity {
 
                 }else if(id == R.id.notif){
                     Toast.makeText(HomePageStudent.this, "Notification Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(HomePageStudent.this, notification.class);
+                    Intent intent = new Intent(HomePageStudent.this, NotificationMain.class);
                     startActivity(intent);
 
                 }

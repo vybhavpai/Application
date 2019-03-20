@@ -163,6 +163,46 @@ public class WordAdapter extends ArrayAdapter<Word>  {
             // Set the background color of the text container View
             textContainer.setBackgroundColor(color);
         }
+        else
+        if(currentWord.getRequestStatus() == 7) {
+            TextView head = (TextView) listItemView.findViewById(R.id.head);
+            head.setText("friend request to " + currentWord.getSubHeader() + " has been accepted ");
+
+            TextView sub = (TextView) listItemView.findViewById(R.id.subhead);
+            sub.setText("");
+
+            // Find the ImageView in the list_item.xml layout with the ID image.
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+            imageView.setImageResource(R.drawable.accept);
+
+
+            // Set the theme color for the list item
+            View textContainer = listItemView.findViewById(R.id.text_container);
+            // Find the color that the resource ID maps to
+            int color = ContextCompat.getColor(getContext(), mColorResourceId);
+            // Set the background color of the text container View
+            textContainer.setBackgroundColor(color);
+        }
+        else
+        if(currentWord.getRequestStatus() == 8) {
+            TextView head = (TextView) listItemView.findViewById(R.id.head);
+            head.setText("money request to " + currentWord.getSubHeader() + " has been accepted ");
+
+            TextView sub = (TextView) listItemView.findViewById(R.id.subhead);
+            sub.setText("");
+
+            // Find the ImageView in the list_item.xml layout with the ID image.
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+            imageView.setImageResource(R.drawable.accept);
+
+
+            // Set the theme color for the list item
+            View textContainer = listItemView.findViewById(R.id.text_container);
+            // Find the color that the resource ID maps to
+            int color = ContextCompat.getColor(getContext(), mColorResourceId);
+            // Set the background color of the text container View
+            textContainer.setBackgroundColor(color);
+        }
 
 
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
