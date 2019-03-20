@@ -25,13 +25,6 @@
 
     </item>
 
-    <item
-        android:id="@+id/wallet"
-        android:title="Wallet"
-        android:icon="@drawable/ic_monetization_on_black_24dp" >
-
-    </item>
-
 
     <item
         android:id="@+id/logout"

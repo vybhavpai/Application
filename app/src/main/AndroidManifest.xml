@@ -38,6 +38,11 @@
         <activity android:name=".changepassword" />
         <activity android:name=".NotificationMain" />
         <activity android:name=".RequestPage" />
+        <activity android:name=".HomePageStudent" />
+        <activity android:name=".HomePageMentor" />
+        <activity android:name=".NewDummyActivity" />
+        <activity android:name=".WalletPageInvestor" />
+        <activity android:name=".WalletPageStudent" />
         <activity android:name=".ProfilePage"></activity>
     </application>
 

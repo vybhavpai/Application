@@ -8,6 +8,13 @@
 
     </item>
 
+    <item
+        android:id="@+id/idea"
+        android:title="My Idea"
+        android:icon="@drawable/ic_lightbulb_outline_black_24dp"
+        >
+
+    </item>
 
     <item
         android:id="@+id/relat"
