@@ -335,7 +335,7 @@ public class HomePage extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
-                        Intent intent = new Intent(HomePage.this,profile_student_2.class);
+                        Intent intent = new Intent(HomePage.this,profile_student.class);
                         ToProfile profileTagObj = new ToProfile();
 //                        profileTagObj.profileObj = profileObjList.get(position);
 //                        profileTagObj.tagObj = tagObjList.get(position);
