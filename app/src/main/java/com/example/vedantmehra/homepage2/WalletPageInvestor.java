@@ -94,8 +94,15 @@ public class WalletPageInvestor extends AppCompatActivity {
             }
         });
 
-
         addMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WalletPageInvestor.this, AddMoneyPage.class);
+                startActivity(intent);
+            }
+        });
+
+        /*addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String amountToAdd = (amount.getText().toString());
@@ -133,7 +140,7 @@ public class WalletPageInvestor extends AppCompatActivity {
                     Toast.makeText(WalletPageInvestor.this, "Enter Money field", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
 
         sendMoney.setOnClickListener(new View.OnClickListener() {

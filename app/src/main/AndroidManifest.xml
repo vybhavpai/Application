@@ -44,7 +44,8 @@
         <activity android:name=".NewDummyActivity" />
         <activity android:name=".WalletPageInvestor" />
         <activity android:name=".WalletPageStudent" />
-        <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".ProfilePage" />
+        <activity android:name=".AddMoneyPage"></activity>
     </application>
 
 </manifest>
