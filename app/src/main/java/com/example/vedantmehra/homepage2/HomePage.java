@@ -335,13 +335,14 @@ public class HomePage extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
-                        Intent intent = new Intent(HomePage.this,profile_student.class);
+                        Intent intent = new Intent(HomePage.this,profile_student_2.class);
                         ToProfile profileTagObj = new ToProfile();
 //                        profileTagObj.profileObj = profileObjList.get(position);
 //                        profileTagObj.tagObj = tagObjList.get(position);
                         //Add your data from getFactualResults method to bundle
                         //bundle.putSerializable("NAME", profileTagObj);
                         intent.putExtra("id",keyList.get(position));
+                        Toast.makeText(HomePage.this, "hello", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
 //Add the bundle to the intent
                     }

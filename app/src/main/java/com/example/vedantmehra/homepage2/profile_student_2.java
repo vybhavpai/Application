@@ -63,7 +63,71 @@ public class profile_student_2 extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     if(dataSnapshot1.getKey().equals(pos)){
                         ref = user.child(pos);
-                        tag = dataSnapshot.child("tag").child("tag").getValue(String.class);
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                tag = dataSnapshot.child("tag").child("tag").getValue(String.class);
+                                profile = dataSnapshot.child("profile").getValue(UserProfile.class);
+
+                                if (tag.equals("0")) {
+                                    textView3.setText(profile.name);
+                                    textView13.setText("Email");
+                                    textView14.setText(profile.userEmail);
+                                    textView5.setText("College");
+                                    textView6.setText(profile.school);
+                                    textView7.setText("Degree");
+                                    textView8.setText(profile.degree);
+                                    textView11.setText("Year");
+                                    textView12.setText(profile.graduation);
+                                    Toast.makeText(profile_student_2.this, "student", Toast.LENGTH_SHORT).show();
+                                    btw.setVisibility(View.INVISIBLE);
+                                    bt.setVisibility(View.INVISIBLE);
+                                    btww.setVisibility(View.INVISIBLE);
+
+
+                                } else if (tag.equals("1")) {
+                                    textView3.setText(profile.name);
+                                    textView13.setText("Email");
+                                    textView14.setText(profile.userEmail);
+                                    textView5.setText("Company");
+                                    textView6.setText(profile.company);
+                                    textView7.setText("Designation");
+                                    textView8.setText(profile.occupation);
+                                    textView11.setVisibility(View.INVISIBLE);
+                                    textView12.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(profile_student_2.this, "investor", Toast.LENGTH_SHORT).show();
+                                    btw.setVisibility(View.INVISIBLE);
+                                    bt.setVisibility(View.INVISIBLE);
+                                    btww.setVisibility(View.INVISIBLE);
+
+
+                                } else if (tag.equals("2")) {
+                                    textView3.setText(profile.name);
+                                    textView13.setText("Email");
+                                    textView14.setText(profile.userEmail);
+                                    textView5.setText("Company");
+                                    textView6.setText(profile.company);
+                                    textView7.setText("Designation");
+                                    textView8.setText(profile.occupation);
+                                    textView11.setVisibility(View.INVISIBLE);
+                                    textView12.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(profile_student_2.this, "mentor", Toast.LENGTH_SHORT).show();
+                                    btw.setVisibility(View.INVISIBLE);
+                                    bt.setVisibility(View.INVISIBLE);
+                                    btww.setVisibility(View.INVISIBLE);
+
+
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                       /* tag = dataSnapshot.child("tag").child("tag").getValue(String.class);
                         profile = dataSnapshot.child("profile").getValue(UserProfile.class);
 
                         if (tag.equals("0")) {
@@ -115,7 +179,7 @@ public class profile_student_2 extends AppCompatActivity {
 
 
 
-                        }
+                        }*/
                         break;
 
                     }
