@@ -37,6 +37,8 @@ public class RequestPage extends AppCompatActivity {
         money = notification.getIntExtra("money",0);
 
         final TextView nameofsender = (TextView)findViewById(R.id.name_in_request);
+        final TextView requesttype = (TextView)findViewById(R.id.type_of_request);
+
 
         x = FirebaseDatabase.getInstance().getReference("user/" + FirebaseAuth.getInstance().getUid());
         databaseReferenceNotification = x.child("notification");
@@ -53,13 +55,15 @@ public class RequestPage extends AppCompatActivity {
                         type = Integer.parseInt(data.child("status").getValue().toString());
                         if(type == 0)
                         {
-                            nameofsender.setText(name + " has sent you a friend request");
+                            nameofsender.setText(name);
+                            requesttype.setText( " has sent you a Friend Request" );
                         }
                         else
                             if(type == 4)
                             {
                                 amount = Integer.parseInt(data.child("amount").getValue().toString());
-                                nameofsender.setText(name + " has sent you amount Rs." + amount );
+                                nameofsender.setText(name);
+                                requesttype.setText( " has sent you amount Rs." + amount );
                             }
                         id = data.child("id").getValue(String.class);
 
