@@ -49,7 +49,7 @@ public class NotificationMain extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 tag = dataSnapshot.getValue().toString();
-               
+
                 if(tag.equals("0"))
                     intent = new Intent(NotificationMain.this, HomePageStudent.class);
                 if(tag.equals("1"))
