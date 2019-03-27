@@ -8,133 +8,133 @@
 
     >
 
-<ScrollView android:fillViewport="true" android:layout_width="match_parent" android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#87cefa"
-        >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#87cefa"
-    >
+    <ScrollView android:fillViewport="true" android:layout_width="match_parent" android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#87cefa"
+            >
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#87cefa"
+                >
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/yoga" />
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/yoga" />
 
-    <TextView
-        android:id="@+id/name_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_marginStart="10dp"
-        android:textStyle="bold"
-        android:text="EVENT NAME :     Retreat in Dubrovnik, Croatia"
-        android:textColor="#000000"
-        android:layout_below="@+id/image_view"
+                <TextView
+                    android:id="@+id/name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:text="EVENT NAME :     Retreat in Dubrovnik, Croatia"
+                    android:textColor="#000000"
+                    android:layout_below="@+id/image_view"
 
-        />
+                    />
 
-    <TextView
-        android:id="@+id/description_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_text_view"
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/description_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name_text_view"
+                    android:textColor="#000000"
 
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="28dp"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:text="ABOUT THE EVENT : "
-        android:textSize="16dp" />
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="28dp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:text="ABOUT THE EVENT : "
+                    android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/info_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_text_view"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="29dp"
-        android:layout_toRightOf="@+id/description_text_view"
-        android:textStyle="italic"
-        android:textSize="15dp"
-        android:layout_marginRight="10dp"
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/info_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name_text_view"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="29dp"
+                    android:layout_toRightOf="@+id/description_text_view"
+                    android:textStyle="italic"
+                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000000"
 
-        android:text="Dubrovnik is a city in southern Croatia fronting the Adriatic Sea. It's known for its distinctive Old Town, the historic part of the city surrounded by the Walls of Dubrovnik, massive stone walls completed in the 16th century. Its well-preserved buildings range from baroque St. Blaise Church to Renaissance Sponza Palace and Gothic Rectorâ€™s Palace. " />
+                    android:text="Dubrovnik is a city in southern Croatia fronting the Adriatic Sea. It's known for its distinctive Old Town, the historic part of the city surrounded by the Walls of Dubrovnik, massive stone walls completed in the 16th century. Its well-preserved buildings range from baroque St. Blaise Church to Renaissance Sponza Palace and Gothic Rectorâ€™s Palace. " />
 
-    <TextView
-        android:id="@+id/date_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description_text_view"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:textStyle="bold"
-        android:layout_marginTop="253dp"
-        android:text="DATE : "
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/date_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description_text_view"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="253dp"
+                    android:text="DATE : "
+                    android:textColor="#000000"
 
-        android:textSize="16dp" />
+                    android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/datetext_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/date_text_view"
-        android:layout_marginLeft="13dp"
-        android:layout_marginBottom="1dp"
-        android:textSize="15dp"
-        android:layout_toRightOf="@+id/date_text_view"
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/datetext_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/date_text_view"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginBottom="1dp"
+                    android:textSize="15dp"
+                    android:layout_toRightOf="@+id/date_text_view"
+                    android:textColor="#000000"
 
-        android:text="28-02-2019" />
+                    android:text="28-02-2019" />
 
-    <TextView
-        android:id="@+id/venue_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description_text_view"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="293dp"
-        android:textStyle="bold"
-        android:text="VENUE : "
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/venue_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description_text_view"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="293dp"
+                    android:textStyle="bold"
+                    android:text="VENUE : "
+                    android:textColor="#000000"
 
-        android:textSize="16dp" />
+                    android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/venuetext_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/description_text_view"
-        android:layout_marginLeft="13dp"
-        android:textSize="15dp"
-        android:layout_marginBottom="-318dp"
-        android:layout_toRightOf="@+id/venue_text_view"
-        android:textColor="#000000"
+                <TextView
+                    android:id="@+id/venuetext_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/description_text_view"
+                    android:layout_marginLeft="13dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="-318dp"
+                    android:layout_toRightOf="@+id/venue_text_view"
+                    android:textColor="#000000"
 
-        android:text="GANDHI HALL" />
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        ></LinearLayout>
+                    android:text="GANDHI HALL" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                ></LinearLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
     <android.support.design.widget.BottomNavigationView
@@ -148,7 +148,7 @@
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_navigation_menu">
+        app:menu="@menu/bottom_navigation_menu1">
 
 
     </android.support.design.widget.BottomNavigationView>
