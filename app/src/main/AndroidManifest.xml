@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".HomePage" />
         <activity android:name=".NewPage" />
-        <activity android:name=".notification" />
-        <activity android:name=".Request" />
         <activity android:name=".profile_student_1" />
         <activity android:name=".profile_student_2" />
         <activity android:name=".profile_student" />

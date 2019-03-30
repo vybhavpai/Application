@@ -30,7 +30,7 @@ public class idea extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_edit:
-                        intent = new Intent(idea.this, notification.class);
+                        intent = new Intent(idea.this, NotificationMain.class);
                         Toast.makeText(idea.this, "Notification", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

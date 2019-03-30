@@ -77,7 +77,7 @@
             app:itemBackground="@color/colorPrimary"
             app:itemIconTint="@drawable/nav_item_color_state"
             app:itemTextColor="@drawable/nav_item_color_state"
-            app:menu="@menu/bottom_navigation_menu1">
+            app:menu="@menu/bottom_navigation_menu">
 
 
         </android.support.design.widget.BottomNavigationView>

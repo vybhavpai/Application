@@ -40,7 +40,7 @@ public class EventPage extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_edit:
-                        intent = new Intent(EventPage.this, notification.class);
+                        intent = new Intent(EventPage.this, NotificationMain.class);
                         Toast.makeText(EventPage.this, "Notification", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
