@@ -44,8 +44,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int i) {
         View someView = viewHolder.view.findViewById(R.id.background);
         View root = someView.getRootView();
-        if(i%2 == 1)
-            root.setBackgroundColor(Color.parseColor("#87CEFA"));
+        if(i%2 == 0)
+            root.setBackgroundColor(Color.parseColor("#c4ffbc"));
         TextView t1, t2, t3;
         Button chat, profile_visit;
         final ImageView profile_pic;

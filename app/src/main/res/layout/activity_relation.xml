@@ -64,9 +64,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
+
         <android.support.design.widget.BottomNavigationView
+
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,5 +82,7 @@
 
 
         </android.support.design.widget.BottomNavigationView>
+
     </RelativeLayout>
+
 </RelativeLayout>

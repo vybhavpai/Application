@@ -26,11 +26,17 @@ public class relation extends AppCompatActivity  {
     ArrayList<String[]> StudentDetail = new ArrayList<>();
     MyRecyclerAdapter adapter;
     RecyclerView recyclerView;
+    Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relation);
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+        if(b != null){
+            flag = true;
+        }
         databaseReference = FirebaseDatabase.getInstance().getReference("user");
         recyclerView = (RecyclerView)findViewById(R.id.rvStudent);
         RecyclerView.LayoutManager  manager = new LinearLayoutManager(this);
@@ -103,8 +109,12 @@ public class relation extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
         finish();
+
         while(currentUserType == null);
-        if(currentUserType.equals("0")) {
+        if(currentUserType.equals("1") && flag){
+            Intent intent = new Intent(relation.this, WalletPageInvestor.class);
+            startActivity(intent);
+        }else if(currentUserType.equals("0")) {
             Intent intent = new Intent(relation.this, HomePageStudent.class);
             startActivity(intent);
         }else if(currentUserType.equals("1")){

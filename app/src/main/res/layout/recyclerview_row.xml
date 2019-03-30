@@ -5,7 +5,7 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="120sp"
-    android:background="@color/khaki"
+    android:background="@color/light_goldenrod_yellow"
     tools:layout_editor_absoluteY="81dp">
 
 
@@ -20,7 +20,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toEndOf="@+id/listImg"
-        app:layout_constraintTop_toTopOf="@+id/listEmail" />
+        app:layout_constraintTop_toTopOf="@+id/listEmail"
+        android:background="@drawable/btn_rounded"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/listImg"
@@ -33,7 +35,8 @@
         app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.466"
+        />
 
     <TextView
         android:id="@+id/listType"

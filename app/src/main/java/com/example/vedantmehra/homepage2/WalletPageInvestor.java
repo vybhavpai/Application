@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class WalletPageInvestor extends AppCompatActivity {
 
-    private Button addMoney, sendMoney, currentBalanceButton;
+    private Button addMoney, sendMoney, currentBalanceButton, GoToRelationPage;
     private EditText amount, userN;
     private DatabaseReference databaseReference;
     private TextView currentBalanceText;
@@ -48,6 +48,7 @@ public class WalletPageInvestor extends AppCompatActivity {
         sendMoney = (Button)findViewById(R.id.send_money_btn);
         amount = (EditText)findViewById(R.id.amt);
         userN = (EditText)findViewById(R.id.userName);
+        GoToRelationPage = findViewById(R.id.relationsBtn);
         currentBalanceButton = (Button)findViewById(R.id.currentBalBtn);
         currentBalanceText = (TextView)findViewById(R.id.currentBalText);
 
@@ -102,6 +103,15 @@ public class WalletPageInvestor extends AppCompatActivity {
             }
         });
 
+        GoToRelationPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WalletPageInvestor.this, relation.class);
+                intent.putExtra("1", "1");
+                startActivity(intent);
+            }
+        });
+
         /*addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +151,7 @@ public class WalletPageInvestor extends AppCompatActivity {
                 }
             }
         });*/
+
 
 
         sendMoney.setOnClickListener(new View.OnClickListener() {
