@@ -7,13 +7,15 @@ public class UserProfile {
     public Integer userType;
     public String occupation, company;
     public String school, degree, graduation, branch;
+    public String area, city, state, country;
 
     public UserProfile() {
     }
 
     public UserProfile(String name, String userEmail, Integer userType,
                        String occupation, String company,
-                       String school, String degree, String graduation, String branch) {
+                       String school, String degree, String graduation, String branch,
+                       String area, String city, String state, String country) {
         this.userEmail = userEmail;
         this.name = name;
         this.userType = userType;
@@ -25,6 +27,51 @@ public class UserProfile {
         this.degree = degree;
         this.graduation = graduation;
         this.branch = branch;
+
+        this.area = area;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Integer getUserType() {

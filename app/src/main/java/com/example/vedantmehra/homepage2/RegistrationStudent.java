@@ -28,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 public class RegistrationStudent extends AppCompatActivity {
 
     private EditText userSchool, userDegree, userBranch, userGraduation;
+    private EditText userArea, userCity, userState, userCountry;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
@@ -35,6 +36,7 @@ public class RegistrationStudent extends AppCompatActivity {
     private Uri imagePath;
     private String email, name, password, userType;
     private String school, degree, graduation, branch;
+    private String area, city, state, country;
     private FirebaseStorage firebaseStorage;
     private static int PICK_IMAGE = 123;
     private StorageReference storageReference;
@@ -118,6 +120,11 @@ public class RegistrationStudent extends AppCompatActivity {
 
         regButton = (Button)findViewById(R.id.btnRegister);
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
+
+        userArea = (EditText)findViewById(R.id.etArea);
+        userCity = (EditText)findViewById(R.id.etCity);
+        userState = (EditText)findViewById(R.id.etState);
+        userCountry = (EditText)findViewById(R.id.etCountry);
     }
 
     private Boolean validate(){
@@ -129,6 +136,14 @@ public class RegistrationStudent extends AppCompatActivity {
         if (!validateDegree())
             failFlag = true;
         if (!validateBranch())
+            failFlag = true;
+        if (!validateArea())
+            failFlag = true;
+        if (!validateCity())
+            failFlag = true;
+        if (!validatesState())
+            failFlag = true;
+        if (!validateCountry())
             failFlag = true;
 
         if (failFlag) {
@@ -186,6 +201,54 @@ public class RegistrationStudent extends AppCompatActivity {
         }
     }
 
+    private boolean validateArea() {
+        area = userArea.getText().toString().trim();
+
+        if (area.isEmpty()) {
+            userArea.setError("Field can't be empty");
+            return false;
+        } else {
+            userArea.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCity() {
+        city = userCity.getText().toString().trim();
+
+        if (city.isEmpty()) {
+            userCity.setError("Field can't be empty");
+            return false;
+        } else {
+            userCity.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validatesState() {
+        state = userState.getText().toString().trim();
+
+        if (state.isEmpty()) {
+            userState.setError("Field can't be empty");
+            return false;
+        } else {
+            userState.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateCountry() {
+        country = userCountry.getText().toString().trim();
+
+        if (country.isEmpty()) {
+            userCountry.setError("Field can't be empty");
+            return false;
+        } else {
+            userCountry.setError(null);
+            return true;
+        }
+    }
+
 
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -207,7 +270,8 @@ public class RegistrationStudent extends AppCompatActivity {
 
         UserProfile userProfile = new UserProfile(name, email,0,
                 "", "",
-                school, degree, graduation, branch);
+                school, degree, graduation, branch,
+                area, city, state, country);
         myRef.child(firebaseAuth.getUid()).child("profile").setValue(userProfile);
         Tag tag = new Tag(userType);
         myRef.child(firebaseAuth.getUid()).child("tag").setValue(tag);

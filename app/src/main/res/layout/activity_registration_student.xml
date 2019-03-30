@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0026aa"
     tools:context=".RegistrationStudent">
 
     <Button
@@ -14,13 +15,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#f3f267"
         android:text="Register"
+        android:textColor="#f37c00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etBranch"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintTop_toBottomOf="@+id/etCountry"
+        app:layout_constraintVertical_bias="0.278" />
 
     <TextView
         android:id="@+id/tvUserLogin"
@@ -31,6 +34,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Already Signed in? Login"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,6 +55,8 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Degree"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +76,8 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Year of Graduation"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,19 +90,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="School"
         android:inputType="text"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <EditText
         android:id="@+id/etBranch"
@@ -107,11 +116,89 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Branch"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etGraduation"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etArea"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="160dp"
+        android:ems="10"
+        android:hint="Area"
+        android:inputType="text"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBranch"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etCity"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="160dp"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="text"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etArea"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etState"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="160dp"
+        android:ems="10"
+        android:hint="State"
+        android:inputType="text"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCity"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="160dp"
+        android:ems="10"
+        android:hint="Country"
+        android:inputType="text"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etState"
         app:layout_constraintVertical_bias="0.0" />
 
 

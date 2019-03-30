@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0026aa"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -17,14 +18,15 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="email ID"
+        android:hint="Email ID"
         android:inputType="textPersonName"
+        android:textColor="#f0d900"
+        android:textColorHint="#f0d900"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -36,6 +38,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
+        android:textColorHint="#f0d900"
+        android:textColor="#f0d900"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -53,6 +57,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="Login"
+        android:background="#f3f267"
+        android:textColor="#f37c00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -60,49 +66,53 @@
         app:layout_constraintVertical_bias="0.154" />
 
     <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="No of attempts remaining:  "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:layout_constraintVertical_bias="0.344" />
-
-    <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="67dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="New User? Sign Up!"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Sign Up"
+        android:textColor="#f3f267"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfo"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
+        app:layout_constraintVertical_bias="0.263" />
 
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Forgot Password?"
-        app:layout_constraintBottom_toTopOf="@+id/tvInfo"
+        android:textColor="#f3f267"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="137dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122"
+        app:srcCompat="@drawable/icon" />
 
 </android.support.constraint.ConstraintLayout>
