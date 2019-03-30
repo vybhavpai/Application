@@ -35,9 +35,9 @@ public class WalletPageStudent extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("money").exists()){
                     String currentBalance = dataSnapshot.child("money").getValue().toString();
-                    amount.setText("Your current Balance is - " + currentBalance);
+                    amount.setText("Your Balance is - " + currentBalance);
                 }else{
-                    amount.setText("Your current Balance is - " + "0");
+                    amount.setText("Your Balance is - " + "0");
                 }
             }
 

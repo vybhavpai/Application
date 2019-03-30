@@ -241,7 +241,7 @@ public class WalletPageInvestor extends AppCompatActivity {
                         }
                     });
                 }else{
-                    Toast.makeText(WalletPageInvestor.this, "Enter amount and username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WalletPageInvestor.this, "Enter amount and email", Toast.LENGTH_SHORT).show();
                 }
             }
         });
