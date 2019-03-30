@@ -237,8 +237,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#2196F3"
+            android:background="@drawable/btn_rounded"
             android:onClick="editPage"
+            android:textColor="@android:color/white"
             android:text="EDIT" />
     </LinearLayout>
         <LinearLayout
