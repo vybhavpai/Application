@@ -244,14 +244,14 @@ public class HomePage extends AppCompatActivity {
                     //obj1 = snapshot.child("tag").getValue(Tag.class);
                     String ob=snapshot.child("tag").child("tag").getValue(String.class);
                     obj1.tagString=ob;
-                    System.out.println(val);
+                    //System.out.println(val);
                     if(data.toLowerCase().contains(val.toLowerCase()))
                     {
-                        Toast.makeText(getApplicationContext(),val+" "+data,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),val+" "+data,Toast.LENGTH_LONG).show();
                         // Toast.makeText(getApplicationContext(),data,Toast.LENGTH_LONG).show();
                         keyList.add(snapshot.getKey());
                         myArrayList.add(val);
-                        Log.d(TAG,val);
+                        //Log.d(TAG,val);
                         String s = obj1.tagString;
                         if(s.equals("0"))
                             secondArrayList.add("Student");
@@ -286,7 +286,7 @@ public class HomePage extends AppCompatActivity {
                     String value = obj.eventName;
                     if(data.toLowerCase().contains(value.toLowerCase()))
                     {
-                        Toast.makeText(getApplicationContext(),"events-- "+value+" "+data,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"events-- "+value+" "+data,Toast.LENGTH_LONG).show();
 
                         myArrayList.add(value);
                         secondArrayList.add(obj.date);
@@ -342,7 +342,7 @@ public class HomePage extends AppCompatActivity {
                         //Add your data from getFactualResults method to bundle
                         //bundle.putSerializable("NAME", profileTagObj);
                         intent.putExtra("id",keyList.get(position));
-                        Toast.makeText(HomePage.this, "hello", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(HomePage.this, "hello", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
 //Add the bundle to the intent
                     }

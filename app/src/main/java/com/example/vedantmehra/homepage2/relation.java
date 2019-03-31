@@ -28,6 +28,7 @@ public class relation extends AppCompatActivity  {
     ArrayList<String[]> StudentDetail = new ArrayList<>();
     MyRecyclerAdapter adapter;
     RecyclerView recyclerView;
+    Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class relation extends AppCompatActivity  {
                         startActivity(intent);
                         break;
                     case R.id.action_edit:
-                        intent = new Intent(relation.this, notification.class);
+                        intent = new Intent(relation.this, NotificationMain.class);
                         Toast.makeText(relation.this, "Notification", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

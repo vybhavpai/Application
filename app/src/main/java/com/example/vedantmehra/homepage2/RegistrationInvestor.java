@@ -209,7 +209,7 @@ public class RegistrationInvestor extends AppCompatActivity {
     }
 
     private boolean validateCountry() {
-` `        country = userCountry.getText().toString().trim();
+        country = userCountry.getText().toString().trim();
 
         if (country.isEmpty()) {
             userCountry.setError("Field can't be empty");

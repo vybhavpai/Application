@@ -93,15 +93,21 @@ public class EventFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                    Intent intent = new Intent(getActivity(), EventPage.class);
-                   Bundle event = new Bundle();
-                    Event sending = new Event();
+                   Bundle bundle = new Bundle();
+                   // Event sending = new Event();
                     Word object = words.get(position);
-                    sending.date = object.date;
-                    sending.description = object.description;
-                    sending.eventName = object.getHeader();
-                    sending.location = object.getSubHeader();
-                    event.putSerializable("EVENT_NAME",sending);
-                    intent.putExtras(event);
+//                    sending.date = object.date;
+//                    sending.description = object.description;
+//                    sending.eventName = object.getHeader();
+//                    sending.location = object.getSubHeader();
+//                    event.putSerializable("EVENT_NAME",sending);
+                    bundle.putString("EVENT_NAME",object.getHeader());
+                    bundle.putString("DESCRIPTION",object.description);
+                    bundle.putString("VENUE",object.getSubHeader());
+                    bundle.putString("DATE",object.date);
+
+                    intent.putExtras(bundle);
+
                     startActivity(intent);
 
             }

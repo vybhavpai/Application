@@ -8,8 +8,16 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class HomePageMentor extends AppCompatActivity {
@@ -29,6 +40,18 @@ public class HomePageMentor extends AppCompatActivity {
 
     String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+    private Button mSubmitButton;
+    private EditText mInputText;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef,mEventRef;
+    ArrayList<String> myArrayList = new ArrayList<>();
+    ArrayList<String> secondArrayList = new ArrayList<>();
+    //    ArrayList<Profile> profileObjList = new ArrayList<>();
+//    ArrayList<TagClass> tagObjList = new ArrayList<>();
+    ArrayList<Event> eventList = new ArrayList<>();
+    ArrayList<Integer> flag = new ArrayList<>();
+    ArrayList<String> keyList = new ArrayList<>();
+    ListView myListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +73,18 @@ public class HomePageMentor extends AppCompatActivity {
 
             }
         });
+
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef=mDatabase.getReference("user");
+        mEventRef = mDatabase.getReference("events");
+        mSubmitButton = findViewById(R.id.button);
+        mInputText = findViewById(R.id.search);
+
+        myListView = (ListView)findViewById(R.id.list_view);
+
+
+        this.mSubmitButton.setOnClickListener(this::readData);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -135,6 +170,163 @@ public class HomePageMentor extends AppCompatActivity {
 
     }
 
+    public class ToProfileMentor implements Serializable {
+        TagClass tagObj;
+        Profile profileObj;
+
+    }
+    public class ToEventMentor implements Serializable{
+        Event eventObj;
+    }
+    private void readData(View view)
+    {
+        //ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,myArrayList);
+        final HomePageMentor.Adapter adapter=new HomePageMentor.Adapter();
+        myListView.setAdapter(adapter);
+        myArrayList.clear();
+        secondArrayList.clear();
+//        profileObjList.clear();
+//        tagObjList.clear();
+        flag.clear();
+        eventList.clear();
+        keyList.clear();
+        final String data = mInputText.getText().toString();
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    //Map<String,Object> data = (Map<String,Object>);
+                    Profile obj = new Profile();
+                    obj=snapshot.child("profile").getValue(Profile.class);
+                    String val = obj.name;
+                    String value="OnDataChange: Name: "+val;
+                    String TAG="tag";
+                    TagClass obj1 = new TagClass();
+                    //obj1 = snapshot.child("tag").getValue(Tag.class);
+                    String ob=snapshot.child("tag").child("tag").getValue(String.class);
+                    obj1.tagString=ob;
+                    //System.out.println(val);
+                    if(data.toLowerCase().contains(val.toLowerCase()))
+                    {
+                        //Toast.makeText(getApplicationContext(),val+" "+data,Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getApplicationContext(),data,Toast.LENGTH_LONG).show();
+                        keyList.add(snapshot.getKey());
+                        myArrayList.add(val);
+                        //Log.d(TAG,val);
+                        String s = obj1.tagString;
+                        if(s.equals("0"))
+                            secondArrayList.add("Student");
+                        else if(s.equals("1"))
+                            secondArrayList.add("Investor");
+                        else
+                            secondArrayList.add("Mentor");
+//                        profileObjList.add(obj);
+//                        tagObjList.add(obj1);
+                        flag.add(0);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(),"failed",Toast.LENGTH_LONG).show();            }
+
+        });
+        mEventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                myArrayList.clear();
+//                secondArrayList.clear();
+//                profileObjList.clear();
+//                tagObjList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                    Event obj = new Event();
+                    obj = snapshot.getValue(Event.class);
+                    String value = obj.eventName;
+                    if(data.toLowerCase().contains(value.toLowerCase()))
+                    {
+                        //Toast.makeText(getApplicationContext(),"events-- "+value+" "+data,Toast.LENGTH_LONG).show();
+
+                        myArrayList.add(value);
+                        secondArrayList.add(obj.date);
+                        flag.add(1);
+                        eventList.add(obj);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    class Adapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return myArrayList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.search_list_element,parent,false);
+            TextView fuln=convertView.findViewById(R.id.full_name);
+            fuln.setText(myArrayList.get(position));
+            TextView var = convertView.findViewById(R.id.second);
+            var.setText(secondArrayList.get(position));
+            LinearLayout lView = (LinearLayout) convertView.findViewById(R.id.search_list);
+            lView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+
+                    Bundle bundle = new Bundle();
+                    if(flag.get(position)==0) {
+                        Intent intent = new Intent(HomePageMentor.this,profile_student_1.class);
+                        HomePageMentor.ToProfileMentor profileTagObj = new HomePageMentor.ToProfileMentor();
+//                        profileTagObj.profileObj = profileObjList.get(position);
+//                        profileTagObj.tagObj = tagObjList.get(position);
+                        //Add your data from getFactualResults method to bundle
+                        //bundle.putSerializable("NAME", profileTagObj);
+                        intent.putExtra("id",keyList.get(position));
+                        //Toast.makeText(HomePageMentor.this, "hello", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+//Add the bundle to the intent
+                    }
+                    else{
+                        int pos = position-keyList.size();
+                        Intent intent = new Intent(HomePageMentor.this,EventPage.class);
+                        HomePageMentor.ToEventMentor EventObj = new HomePageMentor.ToEventMentor();
+                        EventObj.eventObj=eventList.get(pos);
+                        bundle.putString("EVENT_NAME",eventList.get(pos).eventName);
+                        bundle.putString("DESCRIPTION",eventList.get(pos).description);
+                        bundle.putString("VENUE",eventList.get(pos).location);
+                        bundle.putString("DATE",eventList.get(pos).date);
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+
+                }
+            });
+            return convertView;
+        }
+    }
 
     void clicked(View view)
     {

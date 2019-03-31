@@ -41,7 +41,7 @@ public class NotificationMain extends AppCompatActivity {
                         break;
                     case R.id.action_edit:
                         intent = new Intent(NotificationMain.this, HomePage.class);
-                        Toast.makeText(NotificationMain.this, "Notification", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NotificationMain.this, "Home", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
                     case R.id.action_remove:
