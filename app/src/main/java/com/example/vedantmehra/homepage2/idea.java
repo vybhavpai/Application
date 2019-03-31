@@ -25,8 +25,8 @@ public class idea extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(idea.this, relation.class);
-                        Toast.makeText(idea.this, "Relations", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(idea.this, HomePage.class);
+                        Toast.makeText(idea.this, "Home", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
                     case R.id.action_edit:

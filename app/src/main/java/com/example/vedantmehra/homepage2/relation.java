@@ -2,11 +2,13 @@ package com.example.vedantmehra.homepage2;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,12 +28,39 @@ public class relation extends AppCompatActivity  {
     ArrayList<String[]> StudentDetail = new ArrayList<>();
     MyRecyclerAdapter adapter;
     RecyclerView recyclerView;
-    Boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relation);
+
+        //Arqum
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.action_add:
+                        Intent intent = new Intent(relation.this, HomePage.class);
+                        Toast.makeText(relation.this, "Home", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        break;
+                    case R.id.action_edit:
+                        intent = new Intent(relation.this, notification.class);
+                        Toast.makeText(relation.this, "Notification", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        break;
+                    case R.id.action_remove:
+                        intent = new Intent(relation.this, profile_student.class);
+                        Toast.makeText(relation.this, "Profile", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
+        //Arqum
+
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
         if(b != null){
@@ -109,7 +138,6 @@ public class relation extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
         finish();
-
         while(currentUserType == null);
         if(currentUserType.equals("1") && flag){
             Intent intent = new Intent(relation.this, WalletPageInvestor.class);
