@@ -166,6 +166,7 @@ public class RequestPage extends AppCompatActivity {
 //            reference.child(id + "acceptm").child("name").setValue(name);
 //
         }
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -212,6 +213,7 @@ public class RequestPage extends AppCompatActivity {
                 });
 
             }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
