@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -104,22 +105,28 @@ public class profile_student_edit extends AppCompatActivity {
 
                 String id=Mauth.getUid();
                 if(tag.equals("0")) {
-                    ref.child(id).child("profile").child("name").setValue(textView3.getText().toString());
-                    ref.child(id).child("profile").child("userEmail").setValue(textView14.getText().toString());
-                    ref.child(id).child("profile").child("degree").setValue(textView8.getText().toString());
-                    ref.child(id).child("profile").child("graduation").setValue(textView12.getText().toString());
+                    ref.child("profile").child("name").setValue(textView3.getText().toString());
+                    ref.child("profile").child("userEmail").setValue(textView14.getText().toString());
+                    ref.child("profile").child("degree").setValue(textView8.getText().toString());
+                    ref.child("profile").child("graduation").setValue(textView12.getText().toString());
+                    ref.child("profile").child("school").setValue(textView6.getText().toString());
+
                 }
-                else if(tag.equals("0")) {
-                    ref.child(id).child("profile").child("name").setValue(textView3.getText().toString());
-                    ref.child(id).child("profile").child("userEmail").setValue(textView14.getText().toString());
-                    ref.child(id).child("profile").child("occupation").setValue(textView8.getText().toString());
+                else if(tag.equals("1")) {
+                    //Toast.makeText(profile_student_edit.this, "hello", Toast.LENGTH_SHORT).show();
+                    ref.child("profile").child("name").setValue(textView3.getText().toString());
+                    ref.child("profile").child("userEmail").setValue(textView14.getText().toString());
+                    ref.child("profile").child("company").setValue(textView6.getText().toString());
+                    ref.child("profile").child("occupation").setValue(textView8.getText().toString());
                 }
-                else if(tag.equals("0")) {
-                    ref.child(id).child("profile").child("name").setValue(textView3.getText().toString());
-                    ref.child(id).child("profile").child("userEmail").setValue(textView14.getText().toString());
-                    ref.child(id).child("profile").child("occupation").setValue(textView8.getText().toString());
+                else if(tag.equals("2")) {
+                    ref.child("profile").child("name").setValue(textView3.getText().toString());
+                    ref.child("profile").child("userEmail").setValue(textView14.getText().toString());
+                    ref.child("profile").child("company").setValue(textView6.getText().toString());
+                    ref.child("profile").child("occupation").setValue(textView8.getText().toString());
                 }
                 Intent inte = new Intent(getApplicationContext(), profile_student.class);
+                inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(inte);
             }
         });

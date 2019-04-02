@@ -297,7 +297,7 @@ public class HomePageMentor extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
-                        Intent intent = new Intent(HomePageMentor.this,profile_student_1.class);
+                        Intent intent = new Intent(HomePageMentor.this,profile_student_2.class);
                         HomePageMentor.ToProfileMentor profileTagObj = new HomePageMentor.ToProfileMentor();
 //                        profileTagObj.profileObj = profileObjList.get(position);
 //                        profileTagObj.tagObj = tagObjList.get(position);

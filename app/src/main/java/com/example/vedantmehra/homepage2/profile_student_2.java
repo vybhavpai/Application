@@ -54,6 +54,7 @@ public class profile_student_2 extends AppCompatActivity {
         Intent notification = getIntent();
         pos = notification.getStringExtra("id");
         btw = findViewById(R.id.button2);
+        btww = findViewById(R.id.button3);
         ref = ref.child(uid).child("relation");
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -80,7 +81,6 @@ public class profile_student_2 extends AppCompatActivity {
                                     textView11.setText("Year");
                                     textView12.setText(profile.graduation);
                                     Toast.makeText(profile_student_2.this, "student", Toast.LENGTH_SHORT).show();
-                                    btw.setVisibility(View.INVISIBLE);
                                     bt.setVisibility(View.INVISIBLE);
                                     btww.setVisibility(View.INVISIBLE);
 
@@ -96,7 +96,6 @@ public class profile_student_2 extends AppCompatActivity {
                                     textView11.setVisibility(View.INVISIBLE);
                                     textView12.setVisibility(View.INVISIBLE);
                                     Toast.makeText(profile_student_2.this, "investor", Toast.LENGTH_SHORT).show();
-                                    btw.setVisibility(View.INVISIBLE);
                                     bt.setVisibility(View.INVISIBLE);
                                     btww.setVisibility(View.INVISIBLE);
 
@@ -112,7 +111,6 @@ public class profile_student_2 extends AppCompatActivity {
                                     textView11.setVisibility(View.INVISIBLE);
                                     textView12.setVisibility(View.INVISIBLE);
                                     Toast.makeText(profile_student_2.this, "mentor", Toast.LENGTH_SHORT).show();
-                                    btw.setVisibility(View.INVISIBLE);
                                     bt.setVisibility(View.INVISIBLE);
                                     btww.setVisibility(View.INVISIBLE);
 
@@ -478,14 +476,50 @@ public class profile_student_2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         btw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inte = new Intent(getApplicationContext(), idea.class);
-                startActivity(inte);
+                DatabaseReference current_user= FirebaseDatabase.getInstance().getReference("user").child(pos);
+                current_user.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("rating").exists()){
+                            if(dataSnapshot.child("rating").child(uid).exists()){
+                                //Intent intee = new Intent(getApplicationContext(),rating2.class);
+                                String b = dataSnapshot.child("rating").child(uid).getValue().toString();
+                                Toast.makeText(profile_student_2.this, "you have already rated "+b, Toast.LENGTH_SHORT).show();
+                                Intent inte = new Intent(getApplicationContext(),rating2.class);
+                                inte.putExtra("id",pos);
+                                inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(inte);
+                            }else{
+                                Intent inte = new Intent(getApplicationContext(), rating.class);
+                                inte.putExtra("id", pos);
+                                inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(inte);
+                            }
+                        }else{
+                            // go to some page
+                            Intent inte = new Intent(getApplicationContext(), rating.class);
+                            inte.putExtra("id", pos);
+                            inte.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(inte);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
-        btww = findViewById(R.id.button3);
+
         btww.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

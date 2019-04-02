@@ -2,7 +2,6 @@ package com.example.vedantmehra.homepage2;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class profile_student_1 extends AppCompatActivity {
+public class profile_notification extends AppCompatActivity {
     Button bt;
     Button btw;
     Button btww;
@@ -25,17 +24,17 @@ public class profile_student_1 extends AppCompatActivity {
     String tag;
     TextView textView3,textView4,textView14,textView5,textView6,textView7,textView8,textView11,textView12,textView13;
     FirebaseAuth Mauth = FirebaseAuth.getInstance();
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user");
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user"),send = FirebaseDatabase.getInstance().getReference("user");
     String uid;
-
-    //String pos;
+    DatabaseReference user= FirebaseDatabase.getInstance().getReference("user");
+    String pos;
+    String name;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_student_1);
-
-
+        setContentView(R.layout.activity_profile_notification);
         textView3 = findViewById(R.id.textView3);
         textView14 = findViewById(R.id.textView14);
         textView13=findViewById(R.id.textView13);
@@ -47,21 +46,19 @@ public class profile_student_1 extends AppCompatActivity {
         textView11=findViewById(R.id.textView11);
         textView12=findViewById(R.id.textView12);
         bt = findViewById(R.id.button);
-
-        //Intent notification = getIntent();
-
-        //pos = notification.getStringExtra("id");
-        btw = findViewById(R.id.button2);
         uid = Mauth.getUid();
-        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user");
-        ref = ref.child(uid);
-        ref.addValueEventListener(new ValueEventListener() {
+        Intent notification = getIntent();
+        pos = notification.getStringExtra("id");
+        btw = findViewById(R.id.button2);
+        btww = findViewById(R.id.button3);
+        ref = user.child(pos);
+
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 tag = dataSnapshot.child("tag").child("tag").getValue(String.class);
                 profile = dataSnapshot.child("profile").getValue(UserProfile.class);
-
-
                 if (tag.equals("0")) {
                     textView3.setText(profile.name);
                     textView13.setText("Email");
@@ -72,9 +69,10 @@ public class profile_student_1 extends AppCompatActivity {
                     textView8.setText(profile.degree);
                     textView11.setText("Year");
                     textView12.setText(profile.graduation);
-                   // btw.setVisibility(View.INVISIBLE);
-                    //bt.setVisibility(View.INVISIBLE);
-                    //btww.setVisibility(View.INVISIBLE);
+                    bt.setVisibility(View.INVISIBLE);
+                    btw.setVisibility(View.INVISIBLE);
+                    btww.setVisibility(View.INVISIBLE);
+                    Toast.makeText(profile_notification.this, "student", Toast.LENGTH_SHORT).show();
 
 
                 } else if (tag.equals("1")) {
@@ -87,9 +85,10 @@ public class profile_student_1 extends AppCompatActivity {
                     textView8.setText(profile.occupation);
                     textView11.setVisibility(View.INVISIBLE);
                     textView12.setVisibility(View.INVISIBLE);
-                   // btw.setVisibility(View.INVISIBLE);
-                    //bt.setVisibility(View.INVISIBLE);
-                    //btww.setVisibility(View.INVISIBLE);
+                    Toast.makeText(profile_notification.this, "investor", Toast.LENGTH_SHORT).show();
+                    btw.setVisibility(View.INVISIBLE);
+                    btww.setVisibility(View.INVISIBLE);
+                    bt.setVisibility(View.INVISIBLE);
 
 
                 } else if (tag.equals("2")) {
@@ -102,9 +101,10 @@ public class profile_student_1 extends AppCompatActivity {
                     textView8.setText(profile.occupation);
                     textView11.setVisibility(View.INVISIBLE);
                     textView12.setVisibility(View.INVISIBLE);
-                   // btw.setVisibility(View.INVISIBLE);
-                    //bt.setVisibility(View.INVISIBLE);
-                    //btww.setVisibility(View.INVISIBLE);
+                    Toast.makeText(profile_notification.this, "mentor", Toast.LENGTH_SHORT).show();
+                    btw.setVisibility(View.INVISIBLE);
+                    btww.setVisibility(View.INVISIBLE);
+                    bt.setVisibility(View.INVISIBLE);
 
 
 
@@ -116,29 +116,5 @@ public class profile_student_1 extends AppCompatActivity {
 
             }
         });
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),profile_student_edit.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
-        btw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent inte = new Intent(getApplicationContext(), idea.class);
-                startActivity(inte);
-            }
-        });
-        btww = findViewById(R.id.button3);
-        btww.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intt = new Intent(getApplicationContext(), changepassword.class);
-                startActivity(intt);
-            }
-        });
     }
 }
-

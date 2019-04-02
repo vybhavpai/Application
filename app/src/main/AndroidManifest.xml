@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -43,7 +44,11 @@
         <activity android:name=".WalletPageInvestor" />
         <activity android:name=".WalletPageStudent" />
         <activity android:name=".ProfilePage" />
-        <activity android:name=".AddMoneyPage"></activity>
+        <activity android:name=".AddMoneyPage" />
+        <activity android:name=".maps" />
+        <activity android:name=".rating" />
+        <activity android:name=".rating2" />
+        <activity android:name=".profile_notification"></activity>
     </application>
 
 </manifest>
