@@ -113,17 +113,17 @@ public class RequestFragment extends Fragment {
             }
         });
 //        words.add(new Word("","",0,0));
-        databaseReferenceNotification.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                words.add(new Word("","",0,12));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReferenceNotification.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                words.add(new Word("","",0,12));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         Log.d("check", "onCreateView: " + words.size());
 
@@ -140,6 +140,7 @@ public class RequestFragment extends Fragment {
                 if (temp.getRequestStatus() == 0) {
                     Intent intent = new Intent(getActivity(), RequestPage.class);
                     intent.putExtra("position", position);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
 
@@ -147,6 +148,7 @@ public class RequestFragment extends Fragment {
                 {
                     Intent intent = new Intent(getActivity(), RequestPage.class);
                     intent.putExtra("position", position);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("money", 1);
 
                     startActivity(intent);
