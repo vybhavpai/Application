@@ -166,19 +166,5 @@ public class relation extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
         finish();
-        while(currentUserType == null);
-        if(currentUserType.equals("1") && flag){
-            Intent intent = new Intent(relation.this, WalletPageInvestor.class);
-            startActivity(intent);
-        }else if(currentUserType.equals("0")) {
-            Intent intent = new Intent(relation.this, HomePageStudent.class);
-            startActivity(intent);
-        }else if(currentUserType.equals("1")){
-            Intent intent = new Intent(relation.this, HomePage.class);
-            startActivity(intent);
-        }else{
-            Intent intent = new Intent(relation.this, HomePageMentor.class);
-            startActivity(intent);
-        }
     }
 }

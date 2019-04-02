@@ -1,11 +1,13 @@
 package com.example.vedantmehra.homepage2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 
@@ -36,6 +39,10 @@ public class EventPage extends AppCompatActivity {
         dateView.setText(bundle.getString("DATE"));
         TextView venueView = findViewById(R.id.venuetext_text_view);
         venueView.setText(bundle.getString("VENUE"));
+        ImageView image = findViewById(R.id.image_view);
+        String url = bundle.getString("URL");
+        Uri uri =  Uri.parse(url);
+        Picasso.get().load(uri).fit().centerCrop().into(image);
 
         DatabaseReference mRef;
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
