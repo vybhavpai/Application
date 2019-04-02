@@ -103,7 +103,7 @@ public class HomePageStudent extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_remove:
-                        intent = new Intent(HomePageStudent.this, profile_student.class);
+                        intent = new Intent(HomePageStudent.this, MapTemp.class);
                         Toast.makeText(HomePageStudent.this, "Profile", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

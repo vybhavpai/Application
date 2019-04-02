@@ -56,7 +56,7 @@ public class RequestFragment extends Fragment {
                 Log.d("check","name :" + name);
                 Log.d("check","status :" + status);
                 if(status<=3) {
-                    words.add(new Word("Friend Request", name, R.drawable.friendreq,
+                    words.add(new Word("Friend Request", name, R.drawable.addfriend,
                             status));
                 }
                 else
@@ -105,6 +105,18 @@ public class RequestFragment extends Fragment {
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+//        words.add(new Word("","",0,0));
+        databaseReferenceNotification.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                words.add(new Word("","",0,0));
             }
 
             @Override

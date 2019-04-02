@@ -32,6 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PasswordActivity" />
+        <activity android:name=".MapTemp" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".RegistrationInvestor" />
         <activity android:name=".RegistrationStudent" />
