@@ -15,6 +15,7 @@
         <activity android:name=".HomePage" />
         <activity android:name=".NewPage" />
         <activity android:name=".profile_student_1" />
+        <activity android:name=".ideasearch" />
         <activity android:name=".profile_student_2" />
         <activity android:name=".profile_student" />
         <activity android:name=".profile_student_edit" />
