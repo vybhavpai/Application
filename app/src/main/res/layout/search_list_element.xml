@@ -9,7 +9,7 @@
     android:background="#fff"
     >
     <ImageView
-        android:id="@+id/profileImage"
+        android:id="@+id/Image"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:padding="20dp"

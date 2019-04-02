@@ -21,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -65,7 +70,25 @@ public class MainActivity extends AppCompatActivity {
 
         if (user != null) {
             finish();
-            startActivity(new Intent(MainActivity.this, HomePage.class));
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user").child(FirebaseAuth.getInstance().getUid());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String temp = dataSnapshot.child("tag").child("tag").getValue().toString();
+                    if(temp.equals("0")){
+                        startActivity(new Intent(MainActivity.this, HomePageStudent.class));
+                    }else if(temp.equals("1")){
+                        startActivity(new Intent(MainActivity.this, HomePage.class));
+                    }else{
+                        startActivity(new Intent(MainActivity.this, HomePageMentor.class));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -150,17 +173,35 @@ public class MainActivity extends AppCompatActivity {
     private void checkEmailVerification() {
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user").child(FirebaseAuth.getInstance().getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.child("tag").child("tag").getValue().toString();
+                if(temp.equals("0")){
+                    startActivity(new Intent(MainActivity.this, HomePageStudent.class));
+                }else if(temp.equals("1")){
+                    startActivity(new Intent(MainActivity.this, HomePage.class));
+                }else{
+                    startActivity(new Intent(MainActivity.this, HomePageMentor.class));
+                }
+            }
 
-        startActivity(new Intent(MainActivity.this, HomePage.class));
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        if (emailflag) {
+            }
+        });
+        //startActivity(new Intent(MainActivity.this, HomePage.class));
+
+        /*if (emailflag) {
             finish();
             startActivity(new Intent(MainActivity.this, HomePage.class));
 //            finish();
         } else {
             Toast.makeText(this, "Verify your email", Toast.LENGTH_SHORT).show();
 //            firebaseAuth.signOut();
-        }
+        }*/
     }
 
 }
