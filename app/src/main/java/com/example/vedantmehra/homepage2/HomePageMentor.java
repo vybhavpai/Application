@@ -102,7 +102,7 @@ public class HomePageMentor extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_remove:
-                        intent = new Intent(HomePageMentor.this, MapTemp.class);
+                        intent = new Intent(HomePageMentor.this, profile_student.class);
                         Toast.makeText(HomePageMentor.this, "Profile", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
@@ -162,6 +162,10 @@ public class HomePageMentor extends AppCompatActivity {
                     Intent intent = new Intent(HomePageMentor.this, NotificationMain.class);
                     startActivity(intent);
 
+                }else if(id == R.id.location){
+                    Toast.makeText(HomePageMentor.this, "Location", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageMentor.this, MapTemp.class);
+                    startActivity(intent);
                 }
 
                 return true;

@@ -179,9 +179,10 @@ public class MapTemp extends AppCompatActivity {
             }
 
             locate = locationAddress;
-            pos  = position(locate);
-            lat1 = Double.parseDouble(locate.substring(0,pos-1));
-
+            if(!(locate.charAt(0) == 'U')) {
+                pos = position(locate);
+                lat1 = Double.parseDouble(locate.substring(0, pos - 1));
+            }
         }
     }
 
@@ -199,9 +200,10 @@ public class MapTemp extends AppCompatActivity {
             }
 
             locate = locationAddress;
-            pos  = position(locate);
-            lon1 = Double.parseDouble(locate.substring(pos+1,locate.length()-1));
-
+            if(!(locate.charAt(0) == 'U')) {
+                pos = position(locate);
+                lon1 = Double.parseDouble(locate.substring(pos + 1, locate.length() - 1));
+            }
         }
     }
 
@@ -228,15 +230,17 @@ public class MapTemp extends AppCompatActivity {
             }
 
             locate = locationAddress;
-            pos  = position(locate);
-            lat2 = Double.parseDouble(locate.substring(0,pos-1));
-            Log.d("abcde","lat1  : "+ lat1 + "lon1  : "+ lon1 +"lat2  : "+ lat2 +"lon2  : "+ lon2 );
-            distance = 2* distance(lat1,lon1,lat2,lon2);
-            Log.d("abcde",""+distance);
-            if(distance<= 500)
-                words.add(new Word(date,description,name, "going to be held at " + location, R.drawable.event, 0));
+            if(!(locate.charAt(0) == 'U')) {
+                pos = position(locate);
+                lat2 = Double.parseDouble(locate.substring(0, pos - 1));
+                Log.d("abcde", "lat1  : " + lat1 + "lon1  : " + lon1 + "lat2  : " + lat2 + "lon2  : " + lon2);
+                distance = 2 * distance(lat1, lon1, lat2, lon2);
+                Log.d("abcde", "" + distance);
+                if (distance <= 500)
+                    words.add(new Word(date, description, name, "going to be held at " + location, R.drawable.event, 0));
 
-            adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -254,9 +258,10 @@ public class MapTemp extends AppCompatActivity {
             }
 
             locate = locationAddress;
-            pos  = position(locate);
-            lon2 = Double.parseDouble(locate.substring(pos+1,locate.length()-1));
-
+            if(!(locate.charAt(0) == 'U')) {
+                pos = position(locate);
+                lon2 = Double.parseDouble(locate.substring(pos + 1, locate.length() - 1));
+            }
            }
     }
 

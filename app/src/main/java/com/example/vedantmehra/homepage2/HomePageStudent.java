@@ -103,7 +103,7 @@ public class HomePageStudent extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_remove:
-                        intent = new Intent(HomePageStudent.this, MapTemp.class);
+                        intent = new Intent(HomePageStudent.this, profile_student.class);
                         Toast.makeText(HomePageStudent.this, "Profile", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
@@ -174,6 +174,10 @@ public class HomePageStudent extends AppCompatActivity {
                         Intent intent = new Intent(HomePageStudent.this, WalletPageInvestor.class);
                         startActivity(intent);
                     }
+                }else if(id == R.id.location){
+                    Toast.makeText(HomePageStudent.this, "Location", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageStudent.this, MapTemp.class);
+                    startActivity(intent);
                 }
                 return true;
             }
