@@ -10,8 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 
@@ -37,7 +40,7 @@ public class EventPage extends AppCompatActivity {
         DatabaseReference mRef;
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mRef = FirebaseDatabase.getInstance().getReference("user");
-        String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
+        //String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,14 +49,27 @@ public class EventPage extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
                         Intent intent;
-                        if(temp.equals("0"))
-                            intent = new Intent(EventPage.this, HomePageStudent.class);
-                        else if(temp.equals("1"))
-                            intent = new Intent(EventPage.this, HomePage.class);
-                        else
-                            intent = new Intent(EventPage.this, HomePageMentor.class);
-                        Toast.makeText(EventPage.this, "Relations", Toast.LENGTH_SHORT).show();
-                        startActivity(intent);
+                        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String temp = dataSnapshot.child(currentUserId).child("tag").child("tag").getValue().toString();
+                                Intent intent;
+                                if(temp.equals("0"))
+                                    intent = new Intent(EventPage.this, HomePageStudent.class);
+                                else if(temp.equals("1"))
+                                    intent = new Intent(EventPage.this, HomePage.class);
+                                else
+                                    intent = new Intent(EventPage.this, HomePageMentor.class);
+                                Toast.makeText(EventPage.this, "Relations", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
                         break;
                     case R.id.action_edit:
                         intent = new Intent(EventPage.this, NotificationMain.class);
