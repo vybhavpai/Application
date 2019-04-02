@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 
 public class EventPage extends AppCompatActivity {
@@ -29,13 +33,25 @@ public class EventPage extends AppCompatActivity {
         dateView.setText(bundle.getString("DATE"));
         TextView venueView = findViewById(R.id.venuetext_text_view);
         venueView.setText(bundle.getString("VENUE"));
+
+        DatabaseReference mRef;
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mRef = FirebaseDatabase.getInstance().getReference("user");
+        String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(EventPage.this, relation.class);
+                        Intent intent;
+                        if(temp.equals("0"))
+                            intent = new Intent(EventPage.this, HomePageStudent.class);
+                        else if(temp.equals("1"))
+                            intent = new Intent(EventPage.this, HomePage.class);
+                        else
+                            intent = new Intent(EventPage.this, HomePageMentor.class);
                         Toast.makeText(EventPage.this, "Relations", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

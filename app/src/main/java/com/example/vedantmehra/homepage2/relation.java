@@ -36,13 +36,24 @@ public class relation extends AppCompatActivity  {
         setContentView(R.layout.activity_relation);
 
         //Arqum
+        DatabaseReference mRef;
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mRef = FirebaseDatabase.getInstance().getReference("user");
+        String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(relation.this, HomePage.class);
+                        Intent intent;
+                        if(temp.equals("0"))
+                            intent = new Intent(relation.this, HomePageStudent.class);
+                        else if(temp.equals("1"))
+                            intent = new Intent(relation.this, HomePage.class);
+                        else
+                            intent = new Intent(relation.this, HomePageMentor.class);
                         Toast.makeText(relation.this, "Home", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

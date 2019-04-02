@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class idea extends AppCompatActivity {
     private static final int REQ_CODE = 1234;
@@ -19,13 +23,25 @@ public class idea extends AppCompatActivity {
         String title,body;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_idea);
+
+
+        DatabaseReference mRef;
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mRef = FirebaseDatabase.getInstance().getReference("user");
+        String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(idea.this, HomePage.class);
+                        Intent intent;
+                        if(temp.equals("0"))
+                            intent = new Intent(idea.this, HomePageStudent.class);
+                        else if(temp.equals("1"))
+                            intent = new Intent(idea.this, HomePage.class);
+                        else
+                            intent = new Intent(idea.this, HomePageMentor.class);
                         Toast.makeText(idea.this, "Home", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;

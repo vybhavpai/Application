@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,18 +30,30 @@ public class NotificationMain extends AppCompatActivity {
         // Set the content of the activity to use the notification_main.xml.xml layout file
         setContentView(R.layout.activity_notification_main);
 
+        DatabaseReference mRef;
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mRef = FirebaseDatabase.getInstance().getReference("user");
+        String temp = mRef.child(currentUserId).child("tag").child("tag").toString();
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(NotificationMain.this, relation.class);
+                        Intent intent;
+                        intent = new Intent(NotificationMain.this,relation.class);
                         Toast.makeText(NotificationMain.this, "Relations", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
                     case R.id.action_edit:
-                        intent = new Intent(NotificationMain.this, HomePage.class);
+
+                        if(temp.equals("0"))
+                            intent = new Intent(NotificationMain.this, HomePageStudent.class);
+                        else if(temp.equals("1"))
+                            intent = new Intent(NotificationMain.this, HomePage.class);
+                        else
+                            intent = new Intent(NotificationMain.this, HomePageMentor.class);
                         Toast.makeText(NotificationMain.this, "Home", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
