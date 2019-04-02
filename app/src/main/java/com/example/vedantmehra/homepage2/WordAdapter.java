@@ -202,6 +202,27 @@ public class WordAdapter extends ArrayAdapter<Word>  {
             int color = ContextCompat.getColor(getContext(), mColorResourceId);
             // Set the background color of the text container View
             textContainer.setBackgroundColor(color);
+        } else if (currentWord.getRequestStatus() == 12) {
+            TextView head = (TextView) listItemView.findViewById(R.id.head);
+            head.setText("");
+
+            TextView sub = (TextView) listItemView.findViewById(R.id.subhead);
+            sub.setText("");
+
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+            imageView.setVisibility(View.GONE);
+
+            // Set the theme color for the list item
+            View textContainer = listItemView.findViewById(R.id.text_container);
+            // Find the color that the resource ID maps to
+            int color = ContextCompat.getColor(getContext(), mColorResourceId);
+            // Set the background color of the text container View
+            textContainer.setBackgroundColor(color);
+
+
+            // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
+            // the ListView.
+            return listItemView;
         }
 
 

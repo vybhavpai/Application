@@ -116,7 +116,7 @@ public class RequestFragment extends Fragment {
         databaseReferenceNotification.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                words.add(new Word("","",0,11));
+                words.add(new Word("","",0,12));
             }
 
             @Override
