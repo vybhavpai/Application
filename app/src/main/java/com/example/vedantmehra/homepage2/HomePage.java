@@ -42,14 +42,16 @@ public class HomePage extends AppCompatActivity {
     private Button mSubmitButton;
     private EditText mInputText;
     private FirebaseDatabase mDatabase;
-    private DatabaseReference mRef,mEventRef;
+    private DatabaseReference mRef,mEventRef, mIdeaRef;
     ArrayList<String> myArrayList = new ArrayList<>();
     ArrayList<String> secondArrayList = new ArrayList<>();
 //    ArrayList<Profile> profileObjList = new ArrayList<>();
 //    ArrayList<TagClass> tagObjList = new ArrayList<>();
     ArrayList<Event> eventList = new ArrayList<>();
     ArrayList<Integer> flag = new ArrayList<>();
+    ArrayList<GetIdea> ideaList = new ArrayList<>();
     ArrayList<String> keyList = new ArrayList<>();
+    ArrayList<String> keyList1 = new ArrayList<>();
     ListView myListView;
 
     @Override
@@ -111,6 +113,7 @@ public class HomePage extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         mRef=mDatabase.getReference("user");
+        mIdeaRef=mDatabase.getReference("user");
         mEventRef = mDatabase.getReference("events");
         mSubmitButton = findViewById(R.id.button);
         mInputText = findViewById(R.id.search);
@@ -231,7 +234,9 @@ public class HomePage extends AppCompatActivity {
 //        tagObjList.clear();
         flag.clear();
         eventList.clear();
+        ideaList.clear();
         keyList.clear();
+        keyList1.clear();
         final String data = mInputText.getText().toString();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -306,6 +311,39 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+
+        mIdeaRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                myArrayList.clear();
+//                secondArrayList.clear();
+//                profileObjList.clear();
+//                tagObjList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                    String ob1 = snapshot.child("tag").child("tag").getValue(String.class);
+                    if(ob1.equals("0")){
+                        GetIdea obj1 = new GetIdea();
+                        obj1 = snapshot.child("idea").getValue(GetIdea.class);
+                        String value = obj1.ideaTitle;
+                        if(data.toLowerCase().contains(value.toLowerCase()))
+                        {
+                            keyList1.add(snapshot.getKey());
+                            myArrayList.add(value);
+                            secondArrayList.add(obj1.ideaTitle);
+                            flag.add(2);
+                            ideaList.add(obj1);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(HomePage.this, "Invalid", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     class Adapter extends BaseAdapter {
 
@@ -350,7 +388,14 @@ public class HomePage extends AppCompatActivity {
                         startActivity(intent);
 //Add the bundle to the intent
                     }
-                    else{
+                    if(flag.get(position)==2) {
+
+                        Intent intent = new Intent(HomePage.this,ideasearch.class);
+                        intent.putExtra("id",keyList1.get(position));
+                        startActivity(intent);
+                    }
+
+                    if(flag.get(position)==1){
                         int pos = position-keyList.size();
                         Intent intent = new Intent(HomePage.this,EventPage.class);
                         ToEvent EventObj = new ToEvent();
@@ -359,7 +404,6 @@ public class HomePage extends AppCompatActivity {
                         bundle.putString("DESCRIPTION",eventList.get(pos).description);
                         bundle.putString("VENUE",eventList.get(pos).location);
                         bundle.putString("DATE",eventList.get(pos).date);
-
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
