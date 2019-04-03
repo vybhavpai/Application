@@ -42,7 +42,7 @@ public class EventFragment extends Fragment {
 
         final ArrayList<Word> words = new ArrayList<Word>();
         final WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.tan_background);
-
+        final ArrayList<String> url = new ArrayList<>();
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -51,8 +51,8 @@ public class EventFragment extends Fragment {
                 String location = (String) data.get("location");
                 String description = (String) data.get("description");
                 String date = (String) data.get("date");
-
-
+                String temp = (String) data.get("url");
+                url.add(temp);
                 words.add(new Word(date,description,name, "going to be held at " + location, R.drawable.event, 0));
 
                 adapter.notifyDataSetChanged();
@@ -105,7 +105,7 @@ public class EventFragment extends Fragment {
                     bundle.putString("DESCRIPTION",object.description);
                     bundle.putString("VENUE",object.getSubHeader());
                     bundle.putString("DATE",object.date);
-
+                    bundle.putString("URL",url.get(position));
                     intent.putExtras(bundle);
 
                     startActivity(intent);

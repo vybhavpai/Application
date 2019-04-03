@@ -37,6 +37,7 @@ public class MapTemp extends AppCompatActivity {
     int pos;
     String city;
     ArrayList<Word> words = new ArrayList<Word>();
+    final ArrayList<String> url = new ArrayList<>();
     WordAdapter adapter;
     String name ,location ,description ,date ;
 
@@ -98,12 +99,12 @@ public class MapTemp extends AppCompatActivity {
             location = (String) data.get("location");
             description = (String) data.get("description");
             date = (String) data.get("date");
-
+            String temp = data.get("url").toString();
             GeocodingLocation locationAddress = new GeocodingLocation();
             locationAddress.getAddressFromLocation(location,
                     getApplicationContext(), new Longitude2());
             locationAddress.getAddressFromLocation(location,
-                    getApplicationContext(), new Latitude2(name,location,description,date));
+                    getApplicationContext(), new Latitude2(name,location,description,date,temp));
 
         }
 
@@ -154,7 +155,7 @@ public class MapTemp extends AppCompatActivity {
             bundle.putString("DESCRIPTION",object.description);
             bundle.putString("VENUE",object.getSubHeader());
             bundle.putString("DATE",object.date);
-
+            bundle.putString("URL",url.get(position));
             intent.putExtras(bundle);
 
             startActivity(intent);
@@ -208,13 +209,14 @@ public class MapTemp extends AppCompatActivity {
     }
 
     private class Latitude2 extends Handler {
-        String name ,location ,description ,date ;
-        Latitude2(String name ,String location ,String description ,String date ){
+        String name ,location ,description ,date,Url ;
+        Latitude2(String name ,String location ,String description ,String date,String temp ){
             super();
             this.date = date;
             this.description = description;
             this.location = location;
             this.name = name;
+            this.Url = temp;
         }
 
         @Override
@@ -236,9 +238,10 @@ public class MapTemp extends AppCompatActivity {
                 Log.d("abcde", "lat1  : " + lat1 + "lon1  : " + lon1 + "lat2  : " + lat2 + "lon2  : " + lon2);
                 distance = 2 * distance(lat1, lon1, lat2, lon2);
                 Log.d("abcde", "" + distance);
-                if (distance <= 500)
+                if (distance <= 500) {
                     words.add(new Word(date, description, name, "going to be held at " + location, R.drawable.event, 0));
-
+                    url.add(Url);
+                }
                 adapter.notifyDataSetChanged();
             }
         }
