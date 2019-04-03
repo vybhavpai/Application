@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ideasearch extends AppCompatActivity {
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user"),mref1,
-    mref2,mref3,mref4,mref5,mref6;
+    mref2,mref3,mref4,mref5,mref6,mref10,mref9,mref7,mref8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +82,20 @@ public class ideasearch extends AppCompatActivity {
         mref4 = mref1.child("ideaCost");
         mref5 = mref1.child("ideaTime");
         mref6 = mref1.child("workType");
+        mref7 = ref.child("profile");
+        mref8 = mref7.child("name");
+        mref9 = mref7.child("branch");
+        mref10 = mref7.child("school");
 
         final TextView et_Location = (TextView) findViewById(R.id.title);
         final TextView et_Location1 = (TextView) findViewById(R.id.body);
         final TextView et_Location2 = (TextView) findViewById(R.id.Cost);
         final TextView et_Location3 = (TextView) findViewById(R.id.WorkType);
         final TextView et_Location4 = (TextView) findViewById(R.id.Time);
+        final TextView et_Location5 = (TextView) findViewById(R.id.Discipline);
+        final TextView et_Location6 = (TextView) findViewById(R.id.textView);
+        final TextView et_Location7 = (TextView) findViewById(R.id.ClgName);
+
 
         mref2.addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,6 +109,43 @@ public class ideasearch extends AppCompatActivity {
 
             }
         });
+        mref8.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location6.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref9.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location5.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref10.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location7.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mref3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

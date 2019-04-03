@@ -302,14 +302,16 @@ public class HomePageStudent extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
                     String ob1 = snapshot.child("tag").child("tag").getValue(String.class);
                     if(ob1.equals("0")){
+                        Profile obj = new Profile();
                         GetIdea obj1 = new GetIdea();
                         obj1 = snapshot.child("idea").getValue(GetIdea.class);
+                        obj = snapshot.child("profile").getValue(Profile.class);
                         String value = obj1.ideaTitle;
-                        if(data.toLowerCase().contains(value.toLowerCase()))
+                        if(value.toLowerCase().contains(data.toLowerCase()))
                         {
                             keyList1.add(snapshot.getKey());
                             myArrayList.add(value);
-                            secondArrayList.add(obj1.ideaTitle);
+                            secondArrayList.add(obj.name);
                             flag.add(2);
                             ideaList.add(obj1);
                         }
@@ -359,7 +361,6 @@ public class HomePageStudent extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-
                     Bundle bundle = new Bundle();
                     if(flag.get(position)==0) {
                         Intent intent = new Intent(HomePageStudent.this,profile_student_2.class);

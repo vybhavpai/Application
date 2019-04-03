@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class idea extends AppCompatActivity {
     private static final int REQ_CODE = 1234;
+    private DatabaseReference mref;
+    private DatabaseReference mref10,mref9,mref7,mref8,mref1,mref2,mref3,mref4,mref5,mref6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String title,body;
@@ -75,19 +77,129 @@ public class idea extends AppCompatActivity {
                 return true;
             }
         });
+
+        mref = FirebaseDatabase.getInstance().getReference("user/" + FirebaseAuth.getInstance().getUid());
+        mref1 = mref.child("idea");
+        mref2 = mref1.child("ideaTitle");
+        mref3 = mref1.child("ideaBody");
+        mref4 = mref1.child("ideaCost");
+        mref5 = mref1.child("ideaTime");
+        mref6 = mref1.child("workType");
+        mref7 = mref.child("profile");
+        mref8 = mref7.child("name");
+        mref9 = mref7.child("branch");
+        mref10 = mref7.child("school");
+
+        final TextView et_Location = (TextView) findViewById(R.id.title);
+        final TextView et_Location1 = (TextView) findViewById(R.id.body);
+        final TextView et_Location2 = (TextView) findViewById(R.id.Cost);
+        final TextView et_Location3 = (TextView) findViewById(R.id.WorkType);
+        final TextView et_Location4 = (TextView) findViewById(R.id.Time);
+        final TextView et_Location5 = (TextView) findViewById(R.id.Discipline);
+        final TextView et_Location6 = (TextView) findViewById(R.id.textView);
+        final TextView et_Location7 = (TextView) findViewById(R.id.ClgName);
+
+        mref2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref8.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location6.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref9.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location5.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref10.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location7.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mref3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location1.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location2.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref5.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location4.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mref6.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                et_Location3.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
     public void editPage(View view){
         Intent intent = new Intent(this , dummypage.class);
-        TextView et_Location = (TextView) findViewById(R.id.title);
-        TextView et_Location1 = (TextView) findViewById(R.id.body);
-        TextView et_Location2 = (TextView) findViewById(R.id.Cost);
-        TextView et_Location3 = (TextView) findViewById(R.id.WorkType);
-        TextView et_Location4 = (TextView) findViewById(R.id.Time);
-        intent.putExtra("title",et_Location.getText().toString());
-        intent.putExtra("body",et_Location1.getText().toString());
-        intent.putExtra("Cost",et_Location2.getText().toString());
-        intent.putExtra("WorkType",et_Location3.getText().toString());
-        intent.putExtra("Time",et_Location4.getText().toString());
         startActivityForResult(intent, REQ_CODE);
     }
 
@@ -95,21 +207,71 @@ public class idea extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_CODE){
-            String heading = data.getStringExtra("location");
-            String bod = data.getStringExtra("location1");
-            String bod1 = data.getStringExtra("location2");
-            String bod2 = data.getStringExtra("location3");
-            String bod3 = data.getStringExtra("location4");
-            TextView textveiw = (TextView) findViewById(R.id.title);
-            textveiw.setText(heading);
-            TextView textveiw2 = (TextView) findViewById(R.id.body);
-            textveiw2.setText(bod);
-            TextView textveiw3 = (TextView) findViewById(R.id.Cost);
-            textveiw3.setText(bod1);
-            TextView textveiw4 = (TextView) findViewById(R.id.WorkType);
-            textveiw4.setText(bod2);
-            TextView textveiw5 = (TextView) findViewById(R.id.Time);
-            textveiw5.setText(bod3);
+            final TextView et_Location = (TextView) findViewById(R.id.title);
+            final TextView et_Location1 = (TextView) findViewById(R.id.body);
+            final TextView et_Location2 = (TextView) findViewById(R.id.Cost);
+            final TextView et_Location3 = (TextView) findViewById(R.id.WorkType);
+            final TextView et_Location4 = (TextView) findViewById(R.id.Time);
+            mref2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    et_Location.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            mref3.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    et_Location1.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            mref4.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    et_Location2.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            mref6.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    et_Location3.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            mref5.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    et_Location4.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 }

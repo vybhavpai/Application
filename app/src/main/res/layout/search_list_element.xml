@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="10dp"
+    android:background="#00c3ff"
     android:id="@+id/search_list"
-    android:background="#fff"
     >
     <ImageView
         android:id="@+id/Image"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:padding="20dp"
-        android:src="@drawable/ic_launcher_background"
+        android:padding="02dp"
+        android:src="@drawable/idea_search"
 
         />
     <LinearLayout

@@ -56,14 +56,7 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:text="- By Raghav" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="10dp"
-            android:src="@drawable/crs" />
+
 
         <TextView
             android:id="@+id/title2"

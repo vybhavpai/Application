@@ -294,13 +294,15 @@ public class HomePageMentor extends AppCompatActivity {
                     String ob1 = snapshot.child("tag").child("tag").getValue(String.class);
                     if(ob1.equals("0")){
                         GetIdea obj1 = new GetIdea();
+                        Profile obj = new Profile();
                         obj1 = snapshot.child("idea").getValue(GetIdea.class);
+                        obj = snapshot.child("profile").getValue(Profile.class);
                         String value = obj1.ideaTitle;
-                        if(data.toLowerCase().contains(value.toLowerCase()))
+                        if(value.toLowerCase().contains(data.toLowerCase()))
                         {
                             keyList1.add(snapshot.getKey());
                             myArrayList.add(value);
-                            secondArrayList.add(obj1.ideaTitle);
+                            secondArrayList.add(obj.name);
                             flag.add(2);
                             ideaList.add(obj1);
                         }
@@ -340,9 +342,11 @@ public class HomePageMentor extends AppCompatActivity {
             fuln.setText(myArrayList.get(position));
             TextView var = convertView.findViewById(R.id.second);
             var.setText(secondArrayList.get(position));
-            ImageView image = convertView.findViewById(R.id.Image);
-            Uri uri =  Uri.parse(urlArrayList.get(position));
-            Picasso.get().load(uri).fit().centerCrop().into(image);
+            if(flag.get(position)==1) {
+                ImageView image = convertView.findViewById(R.id.Image);
+                Uri uri = Uri.parse(urlArrayList.get(position));
+                Picasso.get().load(uri).fit().centerCrop().into(image);
+            }
             LinearLayout lView = (LinearLayout) convertView.findViewById(R.id.search_list);
             lView.setOnClickListener(new View.OnClickListener() {
                 @Override

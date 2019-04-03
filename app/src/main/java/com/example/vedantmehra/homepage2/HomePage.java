@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.PointerIcon;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -329,14 +330,16 @@ public class HomePage extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
                     String ob1 = snapshot.child("tag").child("tag").getValue(String.class);
                     if(ob1.equals("0")){
+                        Profile obj = new Profile();
                         GetIdea obj1 = new GetIdea();
                         obj1 = snapshot.child("idea").getValue(GetIdea.class);
+                        obj = (Profile) snapshot.child("profile").getValue(Profile.class);
                         String value = obj1.ideaTitle;
-                        if(data.toLowerCase().contains(value.toLowerCase()))
+                        if(value.toLowerCase().contains(data.toLowerCase()))
                         {
                             keyList1.add(snapshot.getKey());
                             myArrayList.add(value);
-                            secondArrayList.add(obj1.ideaTitle);
+                            secondArrayList.add(obj.name);
                             flag.add(2);
                             ideaList.add(obj1);
                         }
@@ -375,9 +378,11 @@ public class HomePage extends AppCompatActivity {
             fuln.setText(myArrayList.get(position));
             TextView var = convertView.findViewById(R.id.second);
             var.setText(secondArrayList.get(position));
-            ImageView image = convertView.findViewById(R.id.Image);
-            Uri uri =  Uri.parse(urlArrayList.get(position));
-            Picasso.get().load(uri).fit().centerCrop().into(image);
+            if(flag.get(position)==1) {
+                ImageView image = convertView.findViewById(R.id.Image);
+                Uri uri = Uri.parse(urlArrayList.get(position));
+                Picasso.get().load(uri).fit().centerCrop().into(image);
+            }
             LinearLayout lView = (LinearLayout) convertView.findViewById(R.id.search_list);
             lView.setOnClickListener(new View.OnClickListener() {
                 @Override
